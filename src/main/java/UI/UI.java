@@ -1,12 +1,7 @@
 package UI;
 
 import java.awt.Color;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
@@ -58,7 +53,7 @@ public class UI extends javax.swing.JFrame {
 
         offset = 0;
 
-        this.setResizable(false);
+//        this.setResizable(false);
         initComponents();
         text = "";
         String[] words = {"int", "void", "class", "bool", };
@@ -125,6 +120,7 @@ public class UI extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -342,7 +338,13 @@ public class UI extends javax.swing.JFrame {
 
         jMenu5.setText("Ayuda");
         jMenuBar1.add(jMenu5);
-
+        jMenuItem8.setText("Analizar");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                analiseLexical(evt);
+            }
+        });
+        jMenu4.add(jMenuItem8);
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -400,6 +402,27 @@ public class UI extends javax.swing.JFrame {
     private void pasteText(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasteText
         jEditorPane1.paste();
     }//GEN-LAST:event_pasteText
+
+    private void analiseLexical(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasteText
+        try {
+            String path = file.getAbsolutePath(), directory = System.getProperty("user.dir") + "/src/main/java/UI/Program.exe ";
+            System.out.println(directory);
+            if ( path != null ){
+                Process process = Runtime.getRuntime().exec(("mono " + directory  + path));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line = "", report = "";
+                while ((line = reader.readLine()) != null) {
+                    report += (line+"\n");
+                }
+                jEditorPane2.setText(report);
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
     public void selectPath(){
         JFileChooser inputRouteFile = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo de texto", "txt");
@@ -413,9 +436,6 @@ public class UI extends javax.swing.JFrame {
         inputRouteFile.showOpenDialog(this);
 
         this.file = inputRouteFile.getSelectedFile();
-    }
-    public void write(String text ){
-        System.out.println(text);
     }
     public void textWriter(){
         try {
@@ -492,6 +512,7 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -515,7 +536,7 @@ public class UI extends javax.swing.JFrame {
 
         ColorDocumentLister() {
 
-            StyleConstants.setForeground(black, Color.BLACK);
+            StyleConstants.setForeground(black, Color.WHITE);
         }
 
         @Override
@@ -541,7 +562,6 @@ public class UI extends javax.swing.JFrame {
             doc.setCharacterAttributes(0, doc.getLength(), black, true);
 
             Matcher m = pat.matcher(jEditorPane1.getText().trim());
-            System.out.println(jEditorPane1.getText());
             while (m.find()) {
                 //findOffset();
                 doc.setCharacterAttributes(m.start()+offset, m.end()+offset, map.get(m.group()), true);
@@ -556,7 +576,6 @@ public class UI extends javax.swing.JFrame {
             Matcher m = pattern.matcher(jEditorPane1.getText());
             while (m.find()){
                 offset = offset + 1;
-                //System.out.println("encontre");
             }
         }
 
