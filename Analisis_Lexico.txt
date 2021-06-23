@@ -1,0 +1,178 @@
+program es -Palabra reservada-
+
+{ es -Simbolo-
+
+int es -Palabra reservada-
+
+x es -Identificador-
+
+, es -Simbolo-
+
+y es -Identificador-
+
+; es -Operador-
+
+float es -Palabra reservada-
+
+a es -Identificador-
+
+, es -Simbolo-
+
+b es -Identificador-
+
+; es -Operador-
+
+x es -Identificador-
+
+= es -Operador-
+
+5 es -Numero-
+
+; es -Operador-
+
+y es -Identificador-
+
+= es -Operador-
+
+4 es -Numero-
+
+; es -Operador-
+
+a es -Identificador-
+
+= es -Operador-
+
+0.0 es -Numero-
+
+; es -Operador-
+
+b es -Identificador-
+
+= es -Operador-
+
+3.0 es -Numero-
+
+; es -Operador-
+
+do es -Palabra reservada-
+
+{ es -Simbolo-
+
+if es -Palabra reservada-
+
+( es -Simbolo-
+
+x es -Identificador-
+
+< es -Simbolo-
+
+y es -Identificador-
+
+) es -Simbolo-
+
+then es -Identificador-
+
+{ es -Simbolo-
+
+y es -Identificador-
+
+= es -Operador-
+
+y es -Identificador-
+
+- es -Operador-
+
+1 es -Numero-
+
+; es -Operador-
+
+} es -Simbolo-
+
+else es -Palabra reservada-
+
+{ es -Simbolo-
+
+x es -Identificador-
+
+= es -Operador-
+
+x es -Identificador-
+
+- es -Operador-
+
+2 es -Numero-
+
+; es -Operador-
+
+a es -Identificador-
+
+= es -Operador-
+
+a es -Identificador-
+
+* es -Operador-
+
+x es -Identificador-
+
++ es -Operador-
+
+b es -Identificador-
+
+; es -Operador-
+
+y es -Identificador-
+
+= es -Operador-
+
+y es -Identificador-
+
+- es -Operador-
+
+1 es -Numero-
+
+; es -Operador-
+
+} es -Simbolo-
+
+fi es -Palabra reservada-
+
+while es -Palabra reservada-
+
+( es -Simbolo-
+
+a es -Identificador-
+
+= es -Operador-
+
+3 es -Numero-
+
+) es -Simbolo-
+
+{ es -Simbolo-
+
+write es -Palabra reservada-
+
+a es -Identificador-
+
+; es -Operador-
+
+} es -Simbolo-
+
+} es -Simbolo-
+
+until es -Palabra reservada-
+
+( es -Simbolo-
+
+y es -Identificador-
+
+> es -Simbolo-
+
+0 es -Numero-
+
+) es -Simbolo-
+
+; es -Operador-
+
+} es -Simbolo-
+

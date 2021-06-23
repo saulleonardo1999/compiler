@@ -405,24 +405,58 @@ public class UI extends javax.swing.JFrame {
 
     private void analiseLexical(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasteText
         try {
-            String path = file.getAbsolutePath(), directory = System.getProperty("user.dir") + "/src/main/java/UI/Program.exe ";
-            System.out.println(directory);
+            String path = file.getAbsolutePath(), directory = System.getProperty("user.dir") + "/src/main/java/UI/NuevoCompilador.exe ";
             if ( path != null ){
+                System.out.println(directory);
+                System.out.println(path);
                 Process process = Runtime.getRuntime().exec(("mono " + directory  + path));
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                FileReader f = new FileReader(System.getProperty("user.dir") + "/Analisis_Lexico.txt");
+                BufferedReader reader = new BufferedReader(f);
                 String line = "", report = "";
                 while ((line = reader.readLine()) != null) {
                     report += (line+"\n");
                 }
+                reader.close();
                 jEditorPane2.setText(report);
+                analiseSyntactic();
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }
+    private void analiseSyntactic(){
+        try {
+            FileReader f = new FileReader(System.getProperty("user.dir") + "/Analisis_Sintactico.txt");
+            BufferedReader reader = new BufferedReader(f);
+            String line = "", report = "";
+            while ((line = reader.readLine()) != null) {
+                report += (line+"\n");
+            }
+            reader.close();
+            jEditorPane3.setText(report);
+            setSyntacticErrors();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    private void setSyntacticErrors(){
+        try {
 
-
+            FileReader f = new FileReader(System.getProperty("user.dir") + "/Error_Sintactico.txt");
+            BufferedReader reader = new BufferedReader(f);
+            String line = "", report = "";
+            while ((line = reader.readLine()) != null) {
+                report += (line+"\n");
+            }
+            reader.close();
+            jEditorPane7.setText(report);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
     public void selectPath(){
         JFileChooser inputRouteFile = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo de texto", "txt");
